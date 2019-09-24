@@ -10,7 +10,7 @@ use App\Http\Resources\StudentResource;
 class StudentsController extends Controller
 {
     function index() {
-        return StudentResource::collection(Student::paginate(5));
+        return StudentResource::collection(Student::paginate(15));
     }
 
     function show($id) {
