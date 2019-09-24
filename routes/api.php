@@ -24,3 +24,10 @@ Route::group([
     Route::get('/{id}', 'StudentsController@show');
     Route::post('/', 'StudentsController@store');
 });
+
+Route::group([
+    'prefix' => 'auth',
+], function($router) {
+    Route::post('login', 'AuthController@login');
+	Route::post('register', 'AuthController@register');
+});
