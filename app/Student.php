@@ -13,4 +13,8 @@ class Student extends BaseModel
         'lastName',
         'year'
     ];
+
+    public function course(){
+        return $this->belongsTo('App\Course');
+    }
 }

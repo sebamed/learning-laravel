@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Student;
+use App\Course;
 use App\Http\Resources\StudentResource;
 
 class StudentsController extends Controller
@@ -18,10 +19,17 @@ class StudentsController extends Controller
     }
 
     function store(Request $request) {
-        return new StudentResource(Student::create([
-            'firstName' => $request->firstName,
-            'lastName' => $request->lastName,
-            'year' => $request->year,
-        ]));
+        $course = Course::where('uuid', $request->course_uuid)->first();
+
+        
+        $student = new Student;
+
+        $student->firstName = $request->firstName;
+        $student->lastName = $request->lastName;
+        $student->year = $request->year;
+        $student->course()->associate($course);
+        $student->save();
+
+        return new StudentResource($student);
     }
 }

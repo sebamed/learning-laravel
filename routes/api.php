@@ -31,3 +31,12 @@ Route::group([
     Route::post('login', 'AuthController@login');
 	Route::post('register', 'AuthController@register');
 });
+
+Route::group([
+    'prefix' => 'courses'
+], function ($router) {
+    Route::get('/', 'CoursesController@index');
+    Route::get('/{uuid}', 'CoursesController@show');
+    Route::post('/', 'CoursesController@store');
+});
+

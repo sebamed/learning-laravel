@@ -30,6 +30,8 @@ class AuthController extends Controller
             'password' => bcrypt($request->password)
         ]);
 
+        $user->sendEmailVerificationNotification();
+
         $success['name'] = $user->name;
         return response()->json(['success' => $success], 201);
     }
