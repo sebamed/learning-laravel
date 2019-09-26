@@ -13,8 +13,12 @@ class CoursesController extends Controller
 {
     //
 
-    public function show(Request $request, $uuid) {
-        throwException(404, "Testiranje", $request->path());
+    public function __construct(Request $request) {
+        $this->_request = $request;
+    }
+
+    public function show($uuid) {
+        throwException(404, "Testiranje", $this->_request->path());
         return new CourseResource(Course::where(['uuid'=>$uuid])->firstOrFail());
     }
 
